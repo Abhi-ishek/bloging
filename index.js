@@ -12,7 +12,7 @@ const app = express();
 const PORT = 8000;
 
 
-connect("mongodb://localhost:27017/blogyfy")
+connect("mongodb+srv://work:bUca3QdNdNaIvN4L@cluster0.cg4xyqj.mongodb.net/")
 .then((e) => { console.log("mongodb connected"); })
 .catch((err) => { console.log(err); });
 

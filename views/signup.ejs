@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %>
+<title>Blogify - Join Us</title>
+<body>
+    <%- include('partials/nav') %>
+
+    <div class="container">
+        <div class="row min-vh-100 align-items-center justify-content-center py-5">
+            <div class="col-md-6">
+                <div class="glass-card p-4 p-md-5">
+                    <div class="text-center mb-5">
+                        <div class="bg-primary rounded-4 d-inline-flex align-items-center justify-content-center mb-4" style="width: 60px; height: 60px; background: var(--accent-gradient) !important;">
+                            <i class="bi bi-person-plus text-white fs-2"></i>
+                        </div>
+                        <h2 class="fw-bold mb-2">Create Account</h2>
+                        <p class="text-muted">Start sharing your stories with the world today</p>
+                    </div>
+
+                    <form action="/user/signup" method="POST">
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <label class="form-label fw-semibold small text-uppercase text-white-50" style="letter-spacing: 1px;">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-end-0 text-muted" style="border-color: var(--glass-border);">
+                                        <i class="bi bi-person"></i>
+                                    </span>
+                                    <input type="text" name="fullName" class="form-control bg-transparent text-white border-start-0 py-3" style="border-color: var(--glass-border);" placeholder="John Doe" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold small text-uppercase text-white-50" style="letter-spacing: 1px;">Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-transparent border-end-0 text-muted" style="border-color: var(--glass-border);">
+                                    <i class="bi bi-envelope"></i>
+                                </span>
+                                <input type="email" name="email" class="form-control bg-transparent text-white border-start-0 py-3" style="border-color: var(--glass-border);" placeholder="name@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="form-label fw-semibold small text-uppercase text-white-50" style="letter-spacing: 1px;">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-transparent border-end-0 text-muted" style="border-color: var(--glass-border);">
+                                    <i class="bi bi-shield-lock"></i>
+                                </span>
+                                <input type="password" name="password" class="form-control bg-transparent text-white border-start-0 py-3" style="border-color: var(--glass-border);" placeholder="••••••••" required>
+                            </div>
+                            <div class="form-text text-muted mt-2 small">Password must be at least 8 characters long.</div>
+                        </div>
+
+                        <button type="submit" class="btn btn-premium w-100 py-3">
+                            Create Account <i class="bi bi-arrow-right-short ms-2"></i>
+                        </button>
+
+                        <div class="text-center mt-5">
+                            <p class="text-muted small mb-0">Already have an account? 
+                                <a href="/user/signin" class="text-gradient fw-bold">Sign In here</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/scripts') %>
+    
+    <style>
+        .form-control:focus {
+            background-color: transparent !important;
+            border-color: var(--accent-color) !important;
+            box-shadow: none !important;
+            color: white !important;
+        }
+        .input-group-text {
+            border-radius: 12px 0 0 12px !important;
+        }
+        .form-control {
+            border-radius: 0 12px 12px 0 !important;
+        }
+        .input-group:focus-within .input-group-text {
+            border-color: var(--accent-color) !important;
+            color: var(--accent-color) !important;
+        }
+    </style>
+</body>
+</html>

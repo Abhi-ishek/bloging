@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %>
+<title>Blogify - Explore Stories</title>
+<body>
+    <%- include('partials/nav') %>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-5 mb-5 overflow-hidden position-relative">
+        <div class="container position-relative z-1">
+            <div class="row align-items-center py-5">
+                <div class="col-lg-7 text-center text-lg-start">
+                    <% if (locals.user) { %>
+                        <h6 class="text-uppercase fw-bold text-gradient mb-3" style="letter-spacing: 2px;">Welcome Back</h6>
+                        <h1 class="display-3 fw-bold mb-4">Hello, <%= user.fullName %>!</h1>
+                        <p class="lead text-muted mb-5 pe-lg-5">
+                            Ready to share your next unique story? Your voice matters. Join thousands of writers who share their thoughts with the world.
+                        </p>
+                        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
+                            <a href="/blog/add-new" class="btn btn-premium btn-lg px-5">
+                                <i class="bi bi-pencil-square me-2"></i> Create New Post
+                            </a>
+                        </div>
+                    <% } else { %>
+                        <h6 class="text-uppercase fw-bold text-gradient mb-3" style="letter-spacing: 2px;">Modern Blogging Platform</h6>
+                        <h1 class="display-3 fw-bold mb-4">Express Your Ideas to the <span class="text-gradient">World</span></h1>
+                        <p class="lead text-muted mb-5 pe-lg-5">
+                            The ultimate destination for storytellers and curious minds. Discover articles on tech, life, and everything in between.
+                        </p>
+                        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
+                            <a href="/user/signup" class="btn btn-premium btn-lg px-5">Start Writing</a>
+                            <a href="/user/signin" class="btn btn-outline-premium btn-lg px-5">Browse Blogs</a>
+                        </div>
+                    <% } %>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="position-relative">
+                        <!-- Abstract decoration -->
+                        <div class="position-absolute top-50 start-50 translate-middle" style="width: 400px; height: 400px; background: var(--accent-gradient); filter: blur(100px); opacity: 0.15; border-radius: 50%;"></div>
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=2070&auto=format&fit=crop" alt="Hero Illustration" class="img-fluid rounded-4 shadow-2xl glass-card p-2" style="transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background accents -->
+        <div class="position-absolute top-0 end-0 p-5 mt-5 d-none d-lg-block" style="opacity: 0.05;">
+            <i class="bi bi-quote display-1"></i>
+        </div>
+    </section>
+
+    <!-- Blogs List Section -->
+    <section class="container mb-5 py-5">
+        <div class="row mb-5 align-items-end">
+            <div class="col-md-8">
+                <h2 class="fw-bold display-6 mb-3">Recent <span class="text-gradient">Stories</span></h2>
+                <div style="width: 80px; height: 4px; background: var(--accent-gradient); border-radius: 2px;"></div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <% if (locals.blogs && blogs.length > 0) { %>
+                <% blogs.forEach((blog, index) => { %>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="glass-card h-100 overflow-hidden d-flex flex-column">
+                            <div class="position-relative overflow-hidden" style="height: 240px;">
+                                <img src="<%= blog.coverImageURL || 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2072&auto=format&fit=crop' %>" 
+                                     class="w-100 h-100 object-fit-cover transition-transform" 
+                                     alt="<%= blog.title %>"
+                                     style="transition: transform 0.6s ease;">
+                                <div class="position-absolute bottom-0 start-0 m-3">
+                                    <span class="badge bg-blur px-3 py-2 rounded-pill" style="backdrop-filter: blur(8px); background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);">
+                                        <i class="bi bi-calendar3 me-1 small"></i> <%= new Date(blog.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) %>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex-grow-1 d-flex flex-column">
+                                <h3 class="h4 fw-bold mb-3">
+                                    <a href="/blog/<%= blog._id %>" class="text-white hover-accent"><%= blog.title %></a>
+                                </h3>
+                                <p class="text-muted small mb-4 line-clamp-3">
+                                    <%= blog.body ? blog.body.substring(0, 150).replace(/<[^>]*>?/gm, '') + '...' : 'Dive into this interesting story and explore more about this topic.' %>
+                                </p>
+                                <div class="mt-auto pt-3 border-top border-white border-opacity-10 d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <img src="<%= blog.createdBy && blog.createdBy.profileImageURL ? blog.createdBy.profileImageURL : 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y' %>" 
+                                             class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;" alt="Author">
+                                        <span class="small fw-medium text-white-50"><%= blog.createdBy && blog.createdBy.fullName ? blog.createdBy.fullName : 'Anonymous' %></span>
+                                    </div>
+                                    <a href="/blog/<%= blog._id %>" class="text-gradient fw-bold small">Read More <i class="bi bi-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <div class="col-12 py-5">
+                    <div class="glass-card p-5 text-center border-dashed">
+                        <div class="mb-4">
+                            <i class="bi bi-journal-x display-1 text-muted opacity-25"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">No stories found</h4>
+                        <p class="text-muted">The feed is empty for now. Be the first one to create a story!</p>
+                        <a href="/blog/add-new" class="btn btn-premium mt-3 px-4">Create Blog</a>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-top border-white border-opacity-10 py-5 mt-5">
+        <div class="container text-center text-muted">
+            <p class="mb-0 small">© <%= new Date().getFullYear() %> Blogify App. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <%- include('partials/scripts') %>
+    
+    <style>
+        .object-fit-cover { object-fit: cover; }
+        .bg-blur { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        .hover-accent:hover { color: var(--accent-color) !important; }
+        .glass-card:hover img { transform: scale(1.05); }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+        .border-dashed { border-style: dashed !important; }
+    </style>
+</body>
+</html>

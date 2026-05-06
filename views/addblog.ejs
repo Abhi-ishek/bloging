@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %>
+<title>Blogify - Create New Story</title>
+<body>
+    <%- include('partials/nav') %>
+
+    <div class="container py-5 mt-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="d-flex align-items-center gap-3 mb-5">
+                    <a href="/" class="btn btn-outline-premium btn-sm rounded-circle d-flex align-items-center justify-content-center p-0" style="width: 36px; height: 36px;">
+                        <i class="bi bi-arrow-left fs-5"></i>
+                    </a>
+                    <div>
+                        <h1 class="fw-bold h2 mb-1">Create <span class="text-gradient">New Story</span></h1>
+                        <p class="text-muted mb-0 small text-uppercase fw-semibold" style="letter-spacing: 1px;">Draft your masterpiece</p>
+                    </div>
+                </div>
+
+                <% if (locals.error) { %>
+                    <div class="alert alert-danger alert-dismissible fade show rounded-4 border-0 shadow-sm mb-4" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        <%= error %>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <% } %>
+
+                <div class="glass-card p-4 p-md-5">
+                    <form action="/blog" method="POST" enctype="multipart/form-data">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <label class="form-label fw-bold text-white-50 small text-uppercase" style="letter-spacing: 1px;">Story Title</label>
+                                <input type="text" name="title" class="form-control bg-transparent text-white border-0 border-bottom border-secondary rounded-0 fs-3 fw-bold py-3 px-0 placeholder-muted" 
+                                       placeholder="Give your story a catchy title..." required style="border-width: 2px !important;">
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-bold text-white-50 small text-uppercase" style="letter-spacing: 1px;">Cover Image</label>
+                                <div class="drop-zone glass-card border-dashed p-5 text-center position-relative mt-2" id="dropZone">
+                                    <input type="file" name="coverImage" id="coverImage" class="position-absolute w-100 h-100 top-0 start-0 opacity-0 cursor-pointer" accept="image/*" required>
+                                    <div id="dropZoneContent">
+                                        <i class="bi bi-cloud-arrow-up display-3 text-muted mb-3"></i>
+                                        <h5 class="fw-bold mb-1">Click or drag to upload cover image</h5>
+                                        <p class="text-muted small mb-0">Recommened size: 1200x630px (Max 5MB)</p>
+                                    </div>
+                                    <div id="previewContainer" class="d-none w-100">
+                                        <img id="imagePreview" src="#" alt="Preview" class="img-fluid rounded-3 shadow-lg" style="max-height: 400px; width: 100%; object-fit: cover;">
+                                        <button type="button" class="btn btn-danger btn-sm mt-3 px-3" id="removeBtn">
+                                            <i class="bi bi-trash me-2"></i> Remove Image
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-bold text-white-50 small text-uppercase" style="letter-spacing: 1px;">Content</label>
+                                <div class="editor-container mt-2">
+                                    <textarea name="body" class="form-control bg-transparent text-white border-white border-opacity-10 rounded-4 p-4" 
+                                              rows="12" placeholder="Tell your story..." required style="resize: none;"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-12 text-end mt-5 pt-3 border-top border-white border-opacity-10">
+                                <button type="button" class="btn btn-outline-premium px-5 me-3" onclick="window.history.back()">Discard</button>
+                                <button type="submit" class="btn btn-premium px-5 py-3">
+                                    <i class="bi bi-send me-2"></i> Publish Story
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/scripts') %>
+
+    <script>
+        const coverImageInput = document.getElementById('coverImage');
+        const dropZone = document.getElementById('dropZone');
+        const dropZoneContent = document.getElementById('dropZoneContent');
+        const previewContainer = document.getElementById('previewContainer');
+        const imagePreview = document.getElementById('imagePreview');
+        const removeBtn = document.getElementById('removeBtn');
+
+        coverImageInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.setAttribute('src', e.target.result);
+                    dropZoneContent.classList.add('d-none');
+                    previewContainer.classList.remove('d-none');
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        removeBtn.addEventListener('click', function() {
+            coverImageInput.value = '';
+            dropZoneContent.classList.remove('d-none');
+            previewContainer.classList.add('d-none');
+        });
+
+        // Hover effect for drop zone
+        coverImageInput.addEventListener('dragenter', () => dropZone.classList.add('border-primary'));
+        coverImageInput.addEventListener('dragleave', () => dropZone.classList.remove('border-primary'));
+        coverImageInput.addEventListener('drop', () => dropZone.classList.remove('border-primary'));
+    </script>
+    
+    <style>
+        .placeholder-muted::placeholder { color: rgba(255,255,255,0.2) !important; font-weight: normal; }
+        .border-dashed { border: 2px dashed var(--glass-border) !important; }
+        .cursor-pointer { cursor: pointer; }
+        .form-control:focus {
+            background-color: transparent !important;
+            border-color: var(--accent-color) !important;
+            box-shadow: none !important;
+        }
+        .textarea:focus {
+            border-color: var(--accent-color) !important;
+        }
+    </style>
+</body>
+</html>

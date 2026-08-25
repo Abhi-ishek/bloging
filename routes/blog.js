@@ -38,6 +38,7 @@ const upload = multer({ storage: storage });
       user: req.user,
     });
   });
+  
   router.post("/", upload.single("coverImage"), async (req, res) => {
     if (!req.user) return res.redirect("/user/signin");
     try {
@@ -48,6 +49,7 @@ const upload = multer({ storage: storage });
         createdBy: req.user._id,
         coverImageURL: req.file ? `/upload/${req.file.filename}` : undefined,
       });
+
       return res.redirect(`/blog/${blog._id}`);
     } catch (error) {
       console.error("Error creating blog:", error);
@@ -82,4 +84,4 @@ const upload = multer({ storage: storage });
     return res.redirect(`/blog/${req.params.blogId}`);
   });
 
-   export default router;
+   export default router;

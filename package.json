@@ -5,19 +5,27 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "tailwind": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/style.css --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^8.18.1",
-    "multer": "^2.0.2"
+    "mongoose": "^8.24.4",
+    "mongose": "^0.0.2-security",
+    "multer": "^2.0.2",
+    "path": "^0.12.7"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "@tailwindcss/cli": "^4.3.0",
+    "autoprefixer": "^10.5.0",
+    "nodemon": "^3.1.10",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^4.3.0"
   }
 }

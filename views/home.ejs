@@ -22,9 +22,9 @@
                             </a>
                         </div>
                     <% } else { %>
-                        <h6 class="text-uppercase fw-bold text-gradient mb-3" style="letter-spacing: 2px;">Modern Blogging Platform</h6>
+                        
                         <h1 class="display-3 fw-bold mb-4">Express Your Ideas to the <span class="text-gradient">World</span></h1>
-                        <p class="lead text-muted mb-5 pe-lg-5">
+                        <p class="lead text mb-5 pe-lg-5">
                             The ultimate destination for storytellers and curious minds. Discover articles on tech, life, and everything in between.
                         </p>
                         <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
@@ -109,11 +109,13 @@
     </section>
 
     <!-- Footer -->
-    <footer class="border-top border-white border-opacity-10 py-5 mt-5">
-        <div class="container text-center text-muted">
+    <!-- <footer class="border-top border-white border-opacity-10 py-5 mt-5">
+        <div class="container text-center text">
             <p class="mb-0 small">© <%= new Date().getFullYear() %> Blogify App. All rights reserved.</p>
+            
         </div>
-    </footer>
+    </footer> -->
+    <%- include('partials/footer') %>
 
     <%- include('partials/scripts') %>
     
@@ -124,7 +126,7 @@
         .glass-card:hover img { transform: scale(1.05); }
         .line-clamp-3 {
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+          line-clamp: 3;
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }

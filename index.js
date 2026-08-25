@@ -1,22 +1,23 @@
  import { resolve } from "path";
 import express, { urlencoded } from "express";
+import dotenv from "dotenv";
  import { connect } from "mongoose";
   import cookieParser from "cookie-parser";
    
  import authMiddleware from "./middlewares/authentication.js";
-const { checkForAuthenticationCookie } = authMiddleware;
+ const { checkForAuthenticationCookie } = authMiddleware;
  import userRoute from './routes/user.js';
+ import connectDB from './db/db.js';
  import userblog from './routes/blog.js';
-import Blog from './models/Blog.js';
-const app = express();
-const PORT = 8000;
+ import Blog from './models/Blog.js';
+ const app = express();
+ const PORT = 8000;
+dotenv.config(); 
 
 
-connect("mongodb+srv://work:bUca3QdNdNaIvN4L@cluster0.cg4xyqj.mongodb.net/")
-.then((e) => { console.log("mongodb connected"); })
-.catch((err) => { console.log(err); });
 
-   
+connectDB()
+
 app.set('view engine' , 'ejs')
 app.set('views' , resolve("./views") );
 
@@ -24,7 +25,7 @@ app.set('views' , resolve("./views") );
  app.use(cookieParser());
  app.use(checkForAuthenticationCookie("token"));
  app.use(express.static(resolve("./public")));
- 
+
 app.get('/' , async (req , res) =>{
      const allBlogs = await Blog.find({});
      res.render("home",{
@@ -32,7 +33,7 @@ app.get('/' , async (req , res) =>{
           blogs: allBlogs,
      });
 });
- 
+
  app.use("/user", userRoute);
  app.use("/blog", userblog);
 

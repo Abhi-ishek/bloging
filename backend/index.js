@@ -19,7 +19,7 @@ dotenv.config();
 connectDB();
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://frontend-taupe-six-0zreojrbar.vercel.app/",
   credentials: true
 }));
 

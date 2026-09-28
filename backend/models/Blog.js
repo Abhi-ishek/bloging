@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-
+// blog schema 
 const blogSchema = new Schema ({
     title: {
          type : String,

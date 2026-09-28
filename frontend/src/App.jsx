@@ -18,7 +18,7 @@ function App() {
     // Basic check to see if user is logged in
     const checkUser = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/user/profile');
+        const res = await axios.get('https://bloging-u462.onrender.com/user/profile');
         if (res.data.success) {
           setUser(res.data.user);
         }

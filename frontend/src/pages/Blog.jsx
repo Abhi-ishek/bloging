@@ -10,7 +10,7 @@ function Blog({ user }) {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/blog/${id}`);
+        const res = await axios.get(`https://bloging-u462.onrender.com/blog/${id}`);
         if (res.data.success) {
           setBlogData(res.data);
         }
@@ -24,7 +24,7 @@ function Blog({ user }) {
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:8000/blog/comment/${id}`, { content: commentContent });
+      const res = await axios.post(`https://bloging-u462.onrender.com/blog/comment/${id}`, { content: commentContent });
       if (res.data.success) {
         setBlogData({ ...blogData, comments: [...blogData.comments, res.data.comment] });
         setCommentContent('');

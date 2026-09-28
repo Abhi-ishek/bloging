@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
+    <style>
+
+    </style>
+</head>
+
+<body>
+<footer class="bg-gray-950 text-gray-300">
+  <div class="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+
+    <!-- Main Footer -->
+    <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+
+      <!-- Brand -->
+      <div>
+        <h2 class="text-2xl font-bold text-white">
+          MyBlog<span class="text-indigo-500">.</span>
+        </h2>
+
+        <p class="mt-4 max-w-xs text-sm leading-6 text-gray-400">
+          Sharing ideas, knowledge, stories and experiences
+          that inspire people to learn and grow.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="mt-6 flex gap-4">
+
+          <a href="#" class="transition hover:text-white" aria-label="Twitter">
+            <i class="fa-brands fa-x-twitter text-lg"></i>
+          </a>
+
+          <a href="#" class="transition hover:text-white" aria-label="GitHub">
+            <i class="fa-brands fa-github text-lg"></i>
+          </a>
+
+          <a href="#" class="transition hover:text-white" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin text-lg"></i>
+          </a>
+
+          <a href="#" class="transition hover:text-white" aria-label="Instagram">
+            <i class="fa-brands fa-instagram text-lg"></i>
+          </a>
+
+        </div>
+      </div>
+
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-white">
+          Explore
+        </h3>
+
+        <ul class="mt-5 space-y-3 text-sm">
+          <li>
+            <a href="/" class="transition hover:text-indigo-400">
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a href="/blogs" class="transition hover:text-indigo-400">
+              All Blogs
+            </a>
+          </li>
+
+          <li>
+            <a href="/categories" class="transition hover:text-indigo-400">
+              Categories
+            </a>
+          </li>
+
+          <li>
+            <a href="/about" class="transition hover:text-indigo-400">
+              About
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
+      <!-- Resources -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-white">
+          Resources
+        </h3>
+
+        <ul class="mt-5 space-y-3 text-sm">
+          <li>
+            <a href="/contact" class="transition hover:text-indigo-400">
+              Contact
+            </a>
+          </li>
+
+          <li>
+            <a href="/privacy" class="transition hover:text-indigo-400">
+              Privacy Policy
+            </a>
+          </li>
+
+          <li>
+            <a href="/terms" class="transition hover:text-indigo-400">
+              Terms & Conditions
+            </a>
+          </li>
+
+          <li>
+            <a href="/write" class="transition hover:text-indigo-400">
+              Write for Us
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
+      <!-- Newsletter -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-white">
+          Stay Updated
+        </h3>
+
+        <p class="mt-4 text-sm leading-6 text-gray-400">
+          Get the latest articles and updates directly in your inbox.
+        </p>
+
+        <form action="/subscribe" method="POST" class="mt-5">
+          <div class="flex overflow-hidden rounded-lg bg-white/10 ring-1 ring-white/10">
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Your email"
+              required
+              class="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-white placeholder-gray-500 outline-none"
+            />
+
+            <button
+              type="submit"
+              class="bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
+            >
+              Subscribe
+            </button>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+
+    <!-- Divider -->
+    <div class="mt-12 border-t border-white/10 pt-8">
+
+      <div class="flex flex-col gap-4 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between">
+
+        <!-- Copyright -->
+        <p>
+          © <%= new Date().getFullYear() %> MyBlog. All rights reserved.
+        </p>
+
+        <!-- Bottom Links -->
+        <div class="flex gap-6">
+          <a href="/privacy" class="transition hover:text-gray-300">
+            Privacy
+          </a>
+
+          <a href="/terms" class="transition hover:text-gray-300">
+            Terms
+          </a>
+
+          <a href="/contact" class="transition hover:text-gray-300">
+            Contact
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+</body>
+
+</html

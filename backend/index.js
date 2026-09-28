@@ -1,9 +1,9 @@
- import { resolve } from "path";
+import { resolve } from "path";
 import express, { urlencoded } from "express";
 import dotenv from "dotenv";
- import { connect } from "mongoose";
-  import cookieParser from "cookie-parser";
-   
+import { connect } from "mongoose";
+import cookieParser from "cookie-parser";
+import cors from "cors";
  import authMiddleware from "./middlewares/authentication.js";
  const { checkForAuthenticationCookie } = authMiddleware;
  import userRoute from './routes/user.js';
@@ -16,23 +16,21 @@ dotenv.config();
 
 
 
-connectDB()
+connectDB();
 
-app.set('view engine' , 'ejs')
-app.set('views' , resolve("./views") );
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}));
 
- app.use(urlencoded({extended: false}));
- app.use(cookieParser());
- app.use(checkForAuthenticationCookie("token"));
- app.use(express.static(resolve("./public")));
+app.use(express.json());
+app.use(urlencoded({extended: false}));
+app.use(cookieParser());
+app.use(checkForAuthenticationCookie("token"));
+app.use(express.static(resolve("./public")));
 
-app.get('/' , async (req , res) =>{
-     const allBlogs = await Blog.find({});
-     res.render("home",{
-          user: req.user,
-          blogs: allBlogs,
-     });
-});
+import { getHomeBlogs } from "./controllers/blogController.js";
+app.get('/', getHomeBlogs);
 
  app.use("/user", userRoute);
  app.use("/blog", userblog);

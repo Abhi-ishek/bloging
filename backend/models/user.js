@@ -11,7 +11,7 @@ const { createTokenForUser } = authService;
     email: {
         type: String,
         required: true,
-        unique: true,
+        // unique: true,
     },
     salt:{
          type: String,
